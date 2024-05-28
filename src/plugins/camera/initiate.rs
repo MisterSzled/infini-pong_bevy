@@ -1,7 +1,6 @@
-
-
-use bevy::render::camera::ScalingMode;
 use bevy::prelude::*;
+use bevy::render::camera::ScalingMode;
+use bevy::render::camera::Viewport;
 
 #[derive(Component)]
 pub struct CameraMarker;
@@ -16,5 +15,13 @@ pub fn setup(mut commands: Commands) {
         camera_bundle.projection.near = 1000.;
         camera_bundle.projection.far = -1000.;
 
-        commands.spawn((camera_bundle, CameraMarker));
+        camera_bundle.camera.viewport = Some(Viewport {
+                physical_position: UVec2::new(0, 0),
+                physical_size: UVec2::new(1600, 900),
+                ..default()
+        });
+
+        camera_bundle.camera.clear_color = ClearColorConfig::Custom(Color::rgb(0., 0., 0.));
+
+        commands.spawn((Name::new("Main_Camera"), CameraMarker, camera_bundle));
 }
