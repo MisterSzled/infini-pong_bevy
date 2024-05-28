@@ -8,6 +8,7 @@ fn main() {
                 .insert_resource(ClearColor(Color::rgb(1.0, 0., 0.)))
                 .add_plugins(plugins::camera::Camera)
                 .add_plugins(plugins::player::Player)
+                .add_plugins(plugins::input::Input)
                 .add_plugins(plugins::wall::Wall)
                 .run();
 }
