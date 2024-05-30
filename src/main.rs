@@ -17,6 +17,7 @@ fn main() {
 
                 .add_plugins(plugins::camera::Camera)
                 .add_plugins(plugins::player::Player)
+                .add_plugins(plugins::enemy::Enemy)
                 .add_plugins(plugins::input::Input)
                 .add_plugins(plugins::wall::Wall)
                 .run();
