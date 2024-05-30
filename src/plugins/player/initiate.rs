@@ -3,11 +3,11 @@ use bevy::{
         sprite::{MaterialMesh2dBundle, Mesh2dHandle},
 };
 
-const PADDLE_WIDTH: f32 = 20.0;
-const PADDLE_HEIGHT: f32 = 60.0;
+use crate::components::collideable::Collideable;
+use crate::components::player::Player;
 
-#[derive(Component)]
-struct Velocity(Vec2);
+pub const PADDLE_WIDTH: f32 = 20.0;
+pub const PADDLE_HEIGHT: f32 = 60.0;
 
 pub fn setup(
         mut commands: Commands,
@@ -17,7 +17,8 @@ pub fn setup(
         // Make the player paddle
         commands.spawn((
                 Name::new("Player Paddle"),
-                Velocity(Vec2::new(0., 0.)),
+                Player,
+                Collideable::new(PADDLE_WIDTH, PADDLE_HEIGHT),
                 MaterialMesh2dBundle {
                         mesh: Mesh2dHandle(meshes.add(Rectangle::new(PADDLE_WIDTH, PADDLE_HEIGHT))),
                         material: materials.add(Color::hsl(360., 0.95, 0.7)),

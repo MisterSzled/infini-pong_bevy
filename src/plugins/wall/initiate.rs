@@ -6,8 +6,7 @@ use bevy::{
 const WALL_WIDTH: f32 = 1600.0;
 const WALL_HEIGHT: f32 = 10.0;
 
-#[derive(Component)]
-struct Velocity(Vec2);
+use crate::components::collideable::Collideable;
 
 pub fn setup(
         mut commands: Commands,
@@ -17,7 +16,7 @@ pub fn setup(
         // Make the walls
         commands.spawn((
                 Name::new("bottom_wall"),
-                Velocity(Vec2::new(0., 0.)),
+                Collideable::new(WALL_WIDTH, WALL_HEIGHT),
                 MaterialMesh2dBundle {
                         mesh: Mesh2dHandle(meshes.add(Rectangle::new(WALL_WIDTH, WALL_HEIGHT))),
                         material: materials.add(Color::hsl(180., 0.95, 0.57)),
@@ -27,7 +26,7 @@ pub fn setup(
         ));
         commands.spawn((
                 Name::new("top_wall"),
-                Velocity(Vec2::new(0., 0.)),
+                Collideable::new(WALL_WIDTH, WALL_HEIGHT),
                 MaterialMesh2dBundle {
                         mesh: Mesh2dHandle(meshes.add(Rectangle::new(WALL_WIDTH, WALL_HEIGHT))),
                         material: materials.add(Color::hsl(180., 0.95, 0.57)),
