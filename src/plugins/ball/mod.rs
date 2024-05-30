@@ -1,13 +1,13 @@
 use bevy::prelude::*;
 
 mod initiate;
-mod movement;
+mod controller;
 
-pub struct Player;
+pub struct Ball;
 
-impl Plugin for Player {
+impl Plugin for Ball {
         fn build(&self, app: &mut App) {
                 app.add_systems(Startup, initiate::setup);
-                app.add_systems(Update, movement::move_player);
+                app.add_systems(Update, controller::update_controller);
         }
 }

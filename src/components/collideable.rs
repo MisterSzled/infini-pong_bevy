@@ -1,4 +1,3 @@
-use crate::components::player::Player;
 use bevy::{
         math::bounding::{Aabb2d, IntersectsVolume, RayCast2d},
         math::primitives::Direction2d,
@@ -15,8 +14,8 @@ pub struct Collideable {
 pub struct Directions {
         pub up: bool,
         pub down: bool,
-        // left: bool,
-        // right: bool,
+        pub left: bool,
+        pub right: bool,
 }
 
 impl Collideable {
@@ -46,8 +45,8 @@ impl Collideable {
                 let mut colliding_sides = Directions {
                         up: false,
                         down: false,
-                        // left: false,
-                        // right: false,
+                        left: false,
+                        right: false,
                 };
 
                 for (collidable, transform) in collidables_query.iter() {
@@ -65,6 +64,23 @@ impl Collideable {
                         };
 
                         if player_aabb.intersects(&collidable_aabb) {
+                                let pos_x_ray = RayCast2d::new(
+                                        Vec2 {
+                                                x: self_pos.x,
+                                                y: self_pos.y,
+                                        },
+                                        Direction2d::X,
+                                        50.,
+                                );
+                                let neg_x_ray = RayCast2d::new(
+                                        Vec2 {
+                                                x: self_pos.x,
+                                                y: self_pos.y,
+                                        },
+                                        Direction2d::NEG_X,
+                                        50.,
+                                );
+
                                 let pos_y_ray = RayCast2d::new(
                                         Vec2 {
                                                 x: self_pos.x,
@@ -82,11 +98,22 @@ impl Collideable {
                                         50.,
                                 );
 
+                                let pos_x_intersection =
+                                        pos_x_ray.aabb_intersection_at(&collidable_aabb);
+                                let neg_x_intersection =
+                                        neg_x_ray.aabb_intersection_at(&collidable_aabb);
+
                                 let pos_y_intersection =
                                         pos_y_ray.aabb_intersection_at(&collidable_aabb);
                                 let neg_y_intersection =
                                         neg_y_ray.aabb_intersection_at(&collidable_aabb);
 
+                                if Option::is_some(&pos_x_intersection) {
+                                        colliding_sides.right = true;
+                                }
+                                if Option::is_some(&neg_x_intersection) {
+                                        colliding_sides.left = true;
+                                }
                                 if Option::is_some(&pos_y_intersection) {
                                         colliding_sides.up = true;
                                 }
