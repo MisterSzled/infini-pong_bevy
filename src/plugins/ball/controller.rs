@@ -1,7 +1,4 @@
-use bevy::{
-        prelude::*,
-        // sprite::{MaterialMesh2dBundle, Mesh2dHandle},
-};
+use bevy::prelude::*;
 
 use crate::components::ball::Ball;
 use crate::components::collideable::Collideable;
