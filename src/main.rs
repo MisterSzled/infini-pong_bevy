@@ -5,13 +5,24 @@ mod events;
 mod plugins;
 mod resources;
 
+#[derive(States, Debug, Clone, PartialEq, Eq, Hash)]
+pub enum AppStates {
+        MainMenu,
+        InGame,
+}
+
 fn main() {
         App::new()
+                .insert_state(AppStates::MainMenu)
+
                 .add_plugins(DefaultPlugins)
-                .insert_resource(ClearColor(Color::rgb(1.0, 0., 0.)))
+
                 .init_resource::<resources::player::player_movement::PlayerAvailableMovement>()
+
                 .add_event::<events::movement::movement_request::MovementRequest>()
+
                 .add_plugins(plugins::camera::Camera)
+
                 .add_plugins(plugins::player::Player)
                 .add_plugins(plugins::enemy::Enemy)
                 .add_plugins(plugins::ball::Ball)

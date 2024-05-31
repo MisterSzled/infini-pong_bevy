@@ -34,4 +34,25 @@ pub fn setup(
                         ..default()
                 },
         ));
+
+        commands.spawn((
+                Name::new("paddle_top_wall"),
+                Collideable::new(20., WALL_HEIGHT),
+                MaterialMesh2dBundle {
+                        mesh: Mesh2dHandle(meshes.add(Rectangle::new(20., WALL_HEIGHT))),
+                        material: materials.add(Color::hsl(180., 0.95, 0.57)),
+                        transform: Transform::from_xyz(750.0, 350., 0.0),
+                        ..default()
+                },
+        ));
+        commands.spawn((
+                Name::new("paddle_top_wall"),
+                Collideable::new(20., WALL_HEIGHT),
+                MaterialMesh2dBundle {
+                        mesh: Mesh2dHandle(meshes.add(Rectangle::new(20., WALL_HEIGHT))),
+                        material: materials.add(Color::hsl(180., 0.95, 0.57)),
+                        transform: Transform::from_xyz(750.0, -350., 0.0),
+                        ..default()
+                },
+        ));
 }
