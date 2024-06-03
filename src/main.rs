@@ -22,6 +22,7 @@ fn main() {
 
                 .add_plugins(plugins::ui::UI)
 
+                .add_plugins(plugins::match_info::MatchInfo)
                 .add_plugins(plugins::player::Player)
                 .add_plugins(plugins::enemy::Enemy)
                 .add_plugins(plugins::ball::Ball)
