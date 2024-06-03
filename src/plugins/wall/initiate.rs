@@ -30,7 +30,7 @@ pub fn setup(
                 MaterialMesh2dBundle {
                         mesh: Mesh2dHandle(meshes.add(Rectangle::new(WALL_WIDTH, WALL_HEIGHT))),
                         material: materials.add(Color::hsl(180., 0.95, 0.57)),
-                        transform: Transform::from_xyz(0.0, 445., 0.0),
+                        transform: Transform::from_xyz(0.0, 395., 0.0),
                         ..default()
                 },
         ));
@@ -41,7 +41,7 @@ pub fn setup(
                 MaterialMesh2dBundle {
                         mesh: Mesh2dHandle(meshes.add(Rectangle::new(20., WALL_HEIGHT))),
                         material: materials.add(Color::hsl(180., 0.95, 0.57)),
-                        transform: Transform::from_xyz(750.0, 350., 0.0),
+                        transform: Transform::from_xyz(750.0, 300., 0.0),
                         ..default()
                 },
         ));
