@@ -4,3 +4,4 @@ pub mod player;
 pub mod enemy;
 pub mod wall;
 pub mod ball;
+pub mod ui;
