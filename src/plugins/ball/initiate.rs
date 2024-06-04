@@ -3,6 +3,8 @@ use bevy::{
         sprite::{MaterialMesh2dBundle, Mesh2dHandle},
 };
 
+use rand::Rng;
+
 use crate::components::ball::Ball;
 use crate::components::collideable::Collideable;
 use crate::components::velocity::Velocity;
@@ -17,7 +19,7 @@ pub fn setup(
         commands.spawn((
                 Name::new("Ball"),
                 Ball,
-                Velocity::new(-1.5, 1.5),
+                Velocity::new(),
                 Collideable::new(BALL_DIAMETER, BALL_DIAMETER),
                 MaterialMesh2dBundle {
                         mesh: Mesh2dHandle(meshes.add(Circle::new(BALL_DIAMETER))),

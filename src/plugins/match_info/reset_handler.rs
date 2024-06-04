@@ -17,8 +17,9 @@ pub fn reset_handler(
                 non_repeating_timer.timer.tick(time.delta());
 
                 if non_repeating_timer.timer.finished() {
+
                         let (_, _, _, mut velocity) = ball_query.single_mut();
-                        *velocity = Velocity::new(-1.5, 1.5);
+                        *velocity = Velocity::new();
 
                         commands.entity(entity).despawn_recursive();
                 }

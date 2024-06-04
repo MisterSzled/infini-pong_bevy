@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use rand::Rng;
 
 #[derive(Component)]
 pub struct Velocity {
@@ -7,7 +8,19 @@ pub struct Velocity {
 }
 
 impl Velocity {
-        pub fn new(x: f32, y: f32) -> Velocity {
+        pub fn new() -> Velocity {
+                let mut rng = rand::thread_rng();
+
+                let mut x: f32 = rng.gen_range(0.5..=2.5);
+                let mut y: f32 = rng.gen_range(0.5..=2.5);
+
+                if rng.gen_bool(0.5) {
+                        x = -x;
+                }
+                if rng.gen_bool(0.5) {
+                        y = -y;
+                }
+
                 Velocity { x, y }
         }
 }
