@@ -3,7 +3,8 @@ use bevy::prelude::*;
 const NORMAL_BUTTON: Color = Color::rgb(0., 0., 0.);
 
 pub fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
-        commands.spawn(NodeBundle {
+        commands.spawn(
+                NodeBundle {
                 style: Style {
                         width: Val::Percent(100.),
                         height: Val::Px(40.),
