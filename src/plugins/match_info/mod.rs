@@ -3,6 +3,7 @@ use bevy::prelude::*;
 
 mod init;
 mod listener;
+mod reset_handler;
 
 pub struct MatchInfo;
 
@@ -15,6 +16,12 @@ impl Plugin for MatchInfo {
                 app.add_systems(
                         Update,
                         listener::listen.run_if(
+                                in_state(AppStates::InGame)
+                        ),
+                );
+                app.add_systems(
+                        Update,
+                        reset_handler::reset_handler.run_if(
                                 in_state(AppStates::InGame)
                         ),
                 );

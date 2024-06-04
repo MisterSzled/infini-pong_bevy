@@ -32,6 +32,7 @@ fn main() {
                 .init_resource::<resources::player::player_movement::PlayerAvailableMovement>()
                 .add_event::<events::movement::movement_request::MovementRequest>()
                 .add_event::<events::score::increment_score_event::IncrementScoreEvent>()
+                .add_event::<events::score::reset_ball_event::ResetBallEvent>()
 
                 .run();
 }

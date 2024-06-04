@@ -3,6 +3,7 @@ use crate::AppStates;
 
 mod initiate;
 mod controller;
+mod reset;
 
 pub struct Ball;
 
@@ -15,6 +16,12 @@ impl Plugin for Ball {
                 app.add_systems(
                         Update,
                         controller::update_controller.run_if(
+                                in_state(AppStates::InGame)
+                        ),
+                );
+                app.add_systems(
+                        Update,
+                        reset::reset_ball.run_if(
                                 in_state(AppStates::InGame)
                         ),
                 );
