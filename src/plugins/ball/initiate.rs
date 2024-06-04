@@ -3,8 +3,6 @@ use bevy::{
         sprite::{MaterialMesh2dBundle, Mesh2dHandle},
 };
 
-use rand::Rng;
-
 use crate::components::ball::Ball;
 use crate::components::collideable::Collideable;
 use crate::components::velocity::Velocity;
