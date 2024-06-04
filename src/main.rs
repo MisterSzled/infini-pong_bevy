@@ -31,6 +31,7 @@ fn main() {
 
                 .init_resource::<resources::player::player_movement::PlayerAvailableMovement>()
                 .add_event::<events::movement::movement_request::MovementRequest>()
+                .add_event::<events::score::increment_score_event::IncrementScoreEvent>()
 
                 .run();
 }
