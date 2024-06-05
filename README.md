@@ -22,16 +22,3 @@ Below are the build specific steps for each mobile platform
 
 ### iOS
 `todo!()`
-
-## List of ECS/Game/Bevy features demonstrated
-The following is a incomplete list of directions to various features from bevy/ecs/game-dev in this project.
-
-  - Systems
-    - /src/main
-    - /src/main/plugins/*
-   
-  - Resources
-    - /src/resoures/player/*
-    - /src/plugins/player/movement
-  
-  - Entities  
