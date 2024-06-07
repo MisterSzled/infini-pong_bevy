@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 use crate::AppStates;
 
-mod initiate;
+mod init;
 mod controller;
 mod reset;
 
@@ -11,7 +11,7 @@ impl Plugin for Ball {
         fn build(&self, app: &mut App) {
                 app.add_systems(
                         OnEnter(AppStates::InGame),
-                        initiate::setup,
+                        init::setup,
                 );
                 app.add_systems(
                         Update,

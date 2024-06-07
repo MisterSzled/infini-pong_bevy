@@ -1,7 +1,7 @@
 use crate::AppStates;
 use bevy::prelude::*;
 
-mod initiate;
+mod init;
 mod listener;
 
 pub struct UI;
@@ -10,7 +10,7 @@ impl Plugin for UI {
         fn build(&self, app: &mut App) {
                 app.add_systems(
                         OnEnter(AppStates::InGame),
-                        initiate::setup,
+                        init::setup,
                 );
                 app.add_systems(
                         Update,

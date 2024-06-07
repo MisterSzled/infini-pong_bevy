@@ -3,7 +3,7 @@ use bevy::prelude::*;
 use crate::AppStates;
 
 mod controller;
-mod initiate;
+mod init;
 
 pub struct Enemy;
 
@@ -11,7 +11,7 @@ impl Plugin for Enemy {
         fn build(&self, app: &mut App) {
                 app.add_systems(
                         OnEnter(AppStates::InGame), 
-                        initiate::setup);
+                        init::setup);
 
                 app.add_systems(
                         Update,

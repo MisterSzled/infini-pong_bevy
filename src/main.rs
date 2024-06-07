@@ -31,6 +31,7 @@ fn main() {
                 .add_plugins(plugins::ball::Ball)
                 .add_plugins(plugins::input::Input)
                 .add_plugins(plugins::wall::Wall)
+                .add_plugins(plugins::map::Map)
 
                 .init_resource::<resources::player::player_movement::PlayerAvailableMovement>()
                 
