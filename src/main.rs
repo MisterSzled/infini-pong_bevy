@@ -4,6 +4,7 @@ mod components;
 mod events;
 mod plugins;
 mod resources;
+mod materials;
 
 #[derive(States, Debug, Clone, PartialEq, Eq, Hash, Default)]
 pub enum AppStates {
@@ -15,6 +16,8 @@ pub enum AppStates {
 fn main() {
         App::new()
                 .init_state::<AppStates>()
+
+                .add_systems(Startup, resources::textures::loader::load)
 
                 .add_plugins(DefaultPlugins)
 
@@ -30,6 +33,7 @@ fn main() {
                 .add_plugins(plugins::wall::Wall)
 
                 .init_resource::<resources::player::player_movement::PlayerAvailableMovement>()
+                
                 .add_event::<events::movement::movement_request::MovementRequest>()
                 .add_event::<events::score::increment_score_event::IncrementScoreEvent>()
                 .add_event::<events::score::reset_ball_event::ResetBallEvent>()
