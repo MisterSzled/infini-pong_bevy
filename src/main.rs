@@ -9,6 +9,7 @@ mod materials;
 #[derive(States, Debug, Clone, PartialEq, Eq, Hash, Default)]
 pub enum AppStates {
         #[default]
+        Setup,
         InGame,
         MainMenu,
 }
@@ -18,6 +19,8 @@ fn main() {
                 .init_state::<AppStates>()
 
                 .add_systems(Startup, resources::textures::loader::load)
+                .add_systems(Startup, resources::levels::loader::load)
+                .add_plugins(plugins::state_manager::StateManager)
 
                 .add_plugins(DefaultPlugins)
 
@@ -41,3 +44,6 @@ fn main() {
 
                 .run();
 }
+
+// 16 * 96 => 1536
+// 1600 - 1536 => 64

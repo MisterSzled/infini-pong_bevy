@@ -7,3 +7,4 @@ pub mod match_info;
 pub mod player;
 pub mod ui;
 pub mod wall;
+pub mod state_manager;
