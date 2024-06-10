@@ -5,7 +5,7 @@ pub struct SpriteSheet {
         pub image_handle: Handle<Image>,
         pub atlas_handle: Handle<TextureAtlasLayout>,
         pub scale: Vec3,
-        pub grid_size: (f32, f32)
+        pub grid_size: f32
 }
 
 impl SpriteSheet {
@@ -28,8 +28,8 @@ impl SpriteSheet {
                 SpriteSheet {
                         image_handle,
                         atlas_handle,
-                        scale: Vec3::splat(3.),
-                        grid_size: (16., 16.)
+                        scale: Vec3::splat(4.),
+                        grid_size: 16.
                 }
         }
 }

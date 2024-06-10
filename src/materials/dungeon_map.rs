@@ -27,4 +27,8 @@ impl DungeonMap {
                         top_right: 5,
                 }
         }
+
+        pub fn get_tile_by_id(id: f32) -> usize {
+                0
+        }
 }

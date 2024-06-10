@@ -3,6 +3,8 @@ use bevy::{
         sprite::{MaterialMesh2dBundle, Mesh2dHandle},
 };
 
+use crate::resources::config::config::Config;
+
 const WALL_WIDTH: f32 = 1600.0;
 const WALL_HEIGHT: f32 = 10.0;
 
@@ -12,6 +14,7 @@ pub fn setup(
         mut commands: Commands,
         mut meshes: ResMut<Assets<Mesh>>,
         mut materials: ResMut<Assets<ColorMaterial>>,
+        config: Res<Config>,
 ) {
         // Make the walls
         commands.spawn((
@@ -30,7 +33,11 @@ pub fn setup(
                 MaterialMesh2dBundle {
                         mesh: Mesh2dHandle(meshes.add(Rectangle::new(WALL_WIDTH, WALL_HEIGHT))),
                         material: materials.add(Color::hsl(180., 0.95, 0.57)),
-                        transform: Transform::from_xyz(0.0, 395., 0.0),
+                        transform: Transform::from_xyz(
+                                0.0,
+                                (config.window_height / 2.) - (WALL_HEIGHT / 2.) - config.in_game_ui_height,
+                                0.0,
+                        ),
                         ..default()
                 },
         ));

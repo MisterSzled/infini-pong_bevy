@@ -1,13 +1,19 @@
 use bevy::prelude::*;
 
+use crate::resources::config::config::Config;
+
 const NORMAL_BUTTON: Color = Color::rgb(0., 0., 0.);
 
-pub fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
+pub fn setup(
+        mut commands: Commands, 
+        asset_server: Res<AssetServer>,
+        config: Res<Config>
+) {
         commands.spawn(
                 NodeBundle {
                 style: Style {
                         width: Val::Percent(100.),
-                        height: Val::Px(40.),
+                        height: Val::Percent(7.5),
                         align_items: AlignItems::Center,
                         justify_content: JustifyContent::Center,
                         ..default()
@@ -18,8 +24,7 @@ pub fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
                 parent.spawn(ButtonBundle {
                         style: Style {
                                 width: Val::Px(250.0),
-                                height: Val::Px(40.0),
-                                border: UiRect::all(Val::Px(2.5)),
+                                height: Val::Percent(100.),
                                 justify_content: JustifyContent::Center,
                                 align_items: AlignItems::Center,
                                 ..default()
@@ -33,7 +38,7 @@ pub fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
                                 "Score: 0 - 0",
                                 TextStyle {
                                         font: asset_server.load("fonts/Retro Gaming.ttf"),
-                                        font_size: 40.0,
+                                        font_size: 25.0,
                                         color: Color::rgb(0.4, 0.9, 0.9),
                                 },
                         ));
