@@ -21,6 +21,9 @@ impl Velocity {
                         y = -y;
                 }
 
+                // x = -10.;
+                // y = 0.;
+
                 Velocity { x, y }
         }
 }

@@ -8,6 +8,8 @@ use bevy::{
 pub struct Collideable {
         pub width: f32,
         pub height: f32,
+        pub x_offset: f32,
+        pub y_offset: f32,
 }
 
 #[derive(Debug)]
@@ -19,10 +21,12 @@ pub struct Directions {
 }
 
 impl Collideable {
-        pub fn new(width: f32, height: f32) -> Collideable {
+        pub fn new(width: f32, height: f32, x_offset: f32, y_offset: f32) -> Collideable {
                 Collideable {
                         width: width as f32,
                         height: height as f32,
+                        x_offset: x_offset as f32,
+                        y_offset: y_offset as f32,
                 }
         }
 
@@ -31,14 +35,14 @@ impl Collideable {
                 self_pos: Vec3,
                 collidables_query: Query<(&Collideable, &Transform)>,
         ) -> Directions {
-                let player_aabb = Aabb2d {
+                let subject_aabb = Aabb2d {
                         min: Vec2 {
-                                x: self_pos.x - (self.width / 2.),
-                                y: self_pos.y - (self.height / 2.),
+                                x: self_pos.x - (self.width / 2.) + self.x_offset,
+                                y: self_pos.y - (self.height / 2.) + self.y_offset,
                         },
                         max: Vec2 {
-                                x: self_pos.x + (self.width / 2.),
-                                y: self_pos.y + (self.height / 2.),
+                                x: self_pos.x + (self.width / 2.) + self.x_offset,
+                                y: self_pos.y + (self.height / 2.) + self.y_offset,
                         },
                 };
 
@@ -54,28 +58,28 @@ impl Collideable {
 
                         let collidable_aabb = Aabb2d {
                                 min: Vec2 {
-                                        x: center.x - (collidable.width / 2.),
-                                        y: center.y - (collidable.height / 2.),
+                                        x: center.x - (collidable.width / 2.) + collidable.x_offset,
+                                        y: center.y - (collidable.height / 2.) + collidable.y_offset,
                                 },
                                 max: Vec2 {
-                                        x: center.x + (collidable.width / 2.),
-                                        y: center.y + (collidable.height / 2.),
+                                        x: center.x + (collidable.width / 2.) + collidable.x_offset,
+                                        y: center.y + (collidable.height / 2.) + collidable.y_offset,
                                 },
                         };
 
-                        if player_aabb.intersects(&collidable_aabb) {
+                        if subject_aabb.intersects(&collidable_aabb) {
                                 let pos_x_ray = RayCast2d::new(
                                         Vec2 {
-                                                x: self_pos.x,
-                                                y: self_pos.y,
+                                                x: self_pos.x + self.x_offset,
+                                                y: self_pos.y + self.y_offset,
                                         },
                                         Direction2d::X,
                                         50.,
                                 );
                                 let neg_x_ray = RayCast2d::new(
                                         Vec2 {
-                                                x: self_pos.x,
-                                                y: self_pos.y,
+                                                x: self_pos.x + self.x_offset,
+                                                y: self_pos.y + self.y_offset,
                                         },
                                         Direction2d::NEG_X,
                                         50.,
@@ -83,16 +87,16 @@ impl Collideable {
 
                                 let pos_y_ray = RayCast2d::new(
                                         Vec2 {
-                                                x: self_pos.x,
-                                                y: self_pos.y,
+                                                x: self_pos.x + self.x_offset,
+                                                y: self_pos.y + self.y_offset,
                                         },
                                         Direction2d::Y,
                                         50.,
                                 );
                                 let neg_y_ray = RayCast2d::new(
                                         Vec2 {
-                                                x: self_pos.x,
-                                                y: self_pos.y,
+                                                x: self_pos.x + self.x_offset,
+                                                y: self_pos.y + self.y_offset,
                                         },
                                         Direction2d::NEG_Y,
                                         50.,

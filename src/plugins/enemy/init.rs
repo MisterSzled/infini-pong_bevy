@@ -1,28 +1,65 @@
-use bevy::{
-        prelude::*,
-        sprite::{MaterialMesh2dBundle, Mesh2dHandle},
-};
+use bevy::prelude::*;
 
 use crate::components::collideable::Collideable;
 use crate::components::enemy::Enemy;
-
-pub const PADDLE_WIDTH: f32 = 20.0;
-pub const PADDLE_HEIGHT: f32 = 60.0;
+use crate::materials::dungeon_map::DungeonMap;
 
 pub fn setup(
         mut commands: Commands,
-        mut meshes: ResMut<Assets<Mesh>>,
-        mut materials: ResMut<Assets<ColorMaterial>>,
+        dungeon_map: Res<DungeonMap>,
 ) {
+        let paddle_height = dungeon_map.spritesheet.scale[1] * dungeon_map.spritesheet.grid_size * 2.;
+        let paddle_width = dungeon_map.spritesheet.scale[0] * dungeon_map.spritesheet.grid_size * 0.25;
+
+        // Make the player paddle
         commands.spawn((
                 Name::new("Enemy Paddle"),
                 Enemy,
-                Collideable::new(PADDLE_WIDTH, PADDLE_HEIGHT),
-                MaterialMesh2dBundle {
-                        mesh: Mesh2dHandle(meshes.add(Rectangle::new(PADDLE_WIDTH, PADDLE_HEIGHT))),
-                        material: materials.add(Color::hsl(360., 0.95, 0.7)),
-                        transform: Transform::from_xyz(750.0, 0.0, 0.0),
+                Collideable::new(
+                        paddle_width, 
+                        paddle_height + 32.,
+                        -16.,
+                        16. + 32.
+                ),
+                SpriteSheetBundle {
+                        transform: Transform {
+                                scale: dungeon_map.spritesheet.scale,
+                                translation: Vec3 {
+                                        x: 750.,
+                                        y: -32.,
+                                        z: 1.,
+                                },
+                                ..default()
+                        },
+                        texture: dungeon_map.spritesheet.image_handle.clone(),
+                        atlas: TextureAtlas {
+                                index: 56 as usize,
+                                layout: dungeon_map.spritesheet.atlas_handle.clone(),
+                        },
                         ..default()
                 },
-        ));
+        ))
+        .with_children(|parent| {
+                parent.spawn((
+                        SpriteSheetBundle {
+                                transform: Transform {
+                                        scale: Vec3::splat(1.),
+                                        translation: Vec3 {
+                                                x: 0.,
+                                                y: 16.,
+                                                z: 1.,
+                                        },
+                                        ..default()
+                                },
+                                texture: dungeon_map.spritesheet.image_handle.clone(),
+                                atlas: TextureAtlas {
+                                        index: 46 as usize,
+                                        layout: dungeon_map.spritesheet.atlas_handle.clone(),
+                                },
+                                ..default()
+                        },
+                        
+                )
+        );
+        });
 }
