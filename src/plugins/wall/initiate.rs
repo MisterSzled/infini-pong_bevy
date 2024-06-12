@@ -71,12 +71,6 @@ pub fn setup(
         commands.spawn((
                 Name::new("paddle_bottom_wall"),
                 Collideable::new(50., WALL_HEIGHT, 0., 32.),
-                // MaterialMesh2dBundle {
-                //         mesh: Mesh2dHandle(meshes.add(Rectangle::new(20., WALL_HEIGHT))),
-                //         material: materials.add(Color::hsl(180., 0.95, 0.57)),
-                //         transform: Transform::from_xyz(750.0, -350. + 64., 0.0),
-                //         ..default()
-                // },
                 SpriteSheetBundle {
                         transform: Transform {
                                 scale: dungeon_map.spritesheet.scale,

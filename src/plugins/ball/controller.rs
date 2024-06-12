@@ -41,10 +41,10 @@ pub fn update_controller(
         );
 
         if colliding_directions.up || colliding_directions.down {
-                velocity.y *= -1.;
+                velocity.y *= -1.5;
         }
         if colliding_directions.left || colliding_directions.right {
-                velocity.x *= -1.;
+                velocity.x *= -1.5;
         }
 
         transform.translation.x += velocity.x;
