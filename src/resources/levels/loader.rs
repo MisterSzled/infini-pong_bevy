@@ -38,7 +38,7 @@ pub fn load(
                 map.push(row);
         }
 
-        let level = Level::new("01".to_string(), map);
+        let level = Level::new(map);
 
         commands.insert_resource(level);
 }
