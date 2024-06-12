@@ -4,7 +4,6 @@ use crate::components::collideable::Collideable;
 use crate::components::player::Player;
 
 use crate::events::movement::movement_request::MovementRequest;
-
 use crate::resources::player::player_movement::PlayerAvailableMovement;
 
 pub fn move_player(
