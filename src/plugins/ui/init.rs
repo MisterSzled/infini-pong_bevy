@@ -1,13 +1,10 @@
 use bevy::prelude::*;
 
-use crate::resources::config::config::Config;
-
 const NORMAL_BUTTON: Color = Color::rgb(0., 0., 0.);
 
 pub fn setup(
         mut commands: Commands, 
         asset_server: Res<AssetServer>,
-        config: Res<Config>
 ) {
         commands.spawn(
                 NodeBundle {

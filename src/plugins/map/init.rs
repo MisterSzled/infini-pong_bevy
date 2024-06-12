@@ -6,7 +6,6 @@ use crate::resources::levels::level::Level;
 
 pub fn setup(
         mut commands: Commands,
-        asset_server: Res<AssetServer>,
         levels: Res<Level>,
         dungeon_map: Res<DungeonMap>,
         config: Res<Config>,
