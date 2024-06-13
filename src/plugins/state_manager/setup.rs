@@ -11,6 +11,6 @@ pub fn setup(
         dungeon_map: Option<Res<DungeonMap>>,
 ) {
         if levels.is_some() && dungeon_map.is_some() {
-                state.set(AppStates::InGame);
+                state.set(AppStates::MainMenu);
         }
 }
