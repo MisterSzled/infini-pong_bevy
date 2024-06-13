@@ -2,6 +2,8 @@
 
 This is a small project i built to learn some of Bevy.
 
+![In game screen](https://github.com/MisterSzled/infini-pong_bevy-0.13.2/blob/master/assets/demo/image.png?raw=true)
+
 While learning and creating my project I mostly used the following:
   - https://bevy-cheatbook.github.io
   - https://bevyengine.org/examples
