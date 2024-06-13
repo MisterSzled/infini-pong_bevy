@@ -12,12 +12,14 @@ While learning and creating my project I mostly used the following:
   - https://github.com/CiderSlime/dungeon-quest
   - Bevy Discord - https://discord.com/invite/bevy
 
+  - Credit to https://pixel-poem.itch.io/dungeon-assetpuck being used for the visuals
+
 This is a very small project but structured as if it is a larger scale one, like dungeon-quest above.
 
 Hopefully this is useful for your Bevy learning.
 
 ## Bevy / general gamedev concepts in this project
-  - Expected ECS ideas
+  - Standard ECS concepts
   - States
   - Schedules & Run Conditions
   - Resources
