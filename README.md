@@ -2,7 +2,7 @@
 
 This is a small project i built to learn some of Bevy.
 
-![screenshot](assets/image.png)
+![screenshot](assets/demo/image.png)
 
 While learning and creating my project I mostly used the following:
   - https://bevy-cheatbook.github.io
