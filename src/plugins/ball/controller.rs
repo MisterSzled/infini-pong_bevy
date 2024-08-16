@@ -31,7 +31,6 @@ pub fn update_controller(
                 reset_ball_emitter.send(ResetBallEvent);
         }
 
-
         // handle collisions
         let colliding_directions = ball_box.get_colliding_sides(
                 ball_pos,
@@ -41,10 +40,10 @@ pub fn update_controller(
         );
 
         if colliding_directions.up || colliding_directions.down {
-                velocity.y *= -1.5;
+                velocity.y *= -1.05;
         }
         if colliding_directions.left || colliding_directions.right {
-                velocity.x *= -1.5;
+                velocity.x *= -1.05;
         }
 
         transform.translation.x += velocity.x;

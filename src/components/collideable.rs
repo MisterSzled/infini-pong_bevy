@@ -1,6 +1,6 @@
 use bevy::{
         math::bounding::{Aabb2d, IntersectsVolume, RayCast2d},
-        math::primitives::Direction2d,
+        math::Dir2,
         prelude::*,
 };
 
@@ -73,7 +73,7 @@ impl Collideable {
                                                 x: self_pos.x + self.x_offset,
                                                 y: self_pos.y + self.y_offset,
                                         },
-                                        Direction2d::X,
+                                        Dir2::X,
                                         50.,
                                 );
                                 let neg_x_ray = RayCast2d::new(
@@ -81,7 +81,7 @@ impl Collideable {
                                                 x: self_pos.x + self.x_offset,
                                                 y: self_pos.y + self.y_offset,
                                         },
-                                        Direction2d::NEG_X,
+                                        Dir2::NEG_X,
                                         50.,
                                 );
 
@@ -90,7 +90,7 @@ impl Collideable {
                                                 x: self_pos.x + self.x_offset,
                                                 y: self_pos.y + self.y_offset,
                                         },
-                                        Direction2d::Y,
+                                        Dir2::Y,
                                         50.,
                                 );
                                 let neg_y_ray = RayCast2d::new(
@@ -98,7 +98,7 @@ impl Collideable {
                                                 x: self_pos.x + self.x_offset,
                                                 y: self_pos.y + self.y_offset,
                                         },
-                                        Direction2d::NEG_Y,
+                                        Dir2::NEG_Y,
                                         50.,
                                 );
 

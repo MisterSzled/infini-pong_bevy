@@ -17,7 +17,7 @@ impl SpriteSheet {
                 let image_handle: Handle<Image> = asset_server.load(path.to_string());
                 let texture_atlas =
                         TextureAtlasLayout::from_grid(
-                                Vec2::new(16.0, 16.0), 
+                                UVec2::new(16, 16), 
                                 10, 
                                 10, 
                                 None, 

@@ -40,12 +40,11 @@ Hopefully this is useful for your Bevy learning.
         - LetterBoxing
 
 ## Mobile
-This project was envisioned as a cross-platform mobile first game
+This project was envisioned as a cross-platform mobile first game \n
 Below are the build specific steps for each mobile platform
 
 ### Android
 `todo!()`
-
 
 ### iOS
 `todo!()`
