@@ -1,4 +1,4 @@
-# Infini-Pong - Bevy 0.13.2
+# Infini-Pong - Bevy 0.14.0
 
 This is a small project i built to learn some of Bevy.
 
