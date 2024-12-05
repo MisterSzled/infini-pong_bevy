@@ -22,43 +22,41 @@ pub fn setup(
                         16.,
                         16. + 32.
                 ),
-                SpriteSheetBundle {
-                        transform: Transform {
-                                scale: dungeon_map.spritesheet.scale,
+                Transform {
+                        scale: dungeon_map.spritesheet.scale,
+                        translation: Vec3 {
+                                x: -750.,
+                                y: -32.,
+                                z: 1.,
+                        },
+                        ..default()
+                },
+                Sprite::from_atlas_image(
+                        dungeon_map.spritesheet.image_handle.clone(), 
+                        TextureAtlas {
+                                index: 56 as usize,
+                                layout: dungeon_map.spritesheet.atlas_handle.clone(),
+                        }
+                ),
+        ))
+        .with_children(|parent| {
+                parent.spawn((
+                        Transform {
+                                scale: Vec3::splat(1.),
                                 translation: Vec3 {
-                                        x: -750.,
-                                        y: -32.,
+                                        x: 0.,
+                                        y: 16.,
                                         z: 1.,
                                 },
                                 ..default()
                         },
-                        texture: dungeon_map.spritesheet.image_handle.clone(),
-                        atlas: TextureAtlas {
-                                index: 56 as usize,
-                                layout: dungeon_map.spritesheet.atlas_handle.clone(),
-                        },
-                        ..default()
-                },
-        ))
-        .with_children(|parent| {
-                parent.spawn((
-                        SpriteSheetBundle {
-                                transform: Transform {
-                                        scale: Vec3::splat(1.),
-                                        translation: Vec3 {
-                                                x: 0.,
-                                                y: 16.,
-                                                z: 1.,
-                                        },
-                                        ..default()
-                                },
-                                texture: dungeon_map.spritesheet.image_handle.clone(),
-                                atlas: TextureAtlas {
+                        Sprite::from_atlas_image(
+                                dungeon_map.spritesheet.image_handle.clone(), 
+                                TextureAtlas {
                                         index: 46 as usize,
                                         layout: dungeon_map.spritesheet.atlas_handle.clone(),
-                                },
-                                ..default()
-                        },
+                                }
+                        ),
                         
                 )
         );

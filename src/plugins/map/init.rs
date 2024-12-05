@@ -15,8 +15,8 @@ pub fn setup(
         for row in levels.level_data.clone() {
                 let mut start_x: f32 = 0.0 - (config.window_width / 2.) + ((dungeon_map.spritesheet.grid_size / 2.) * dungeon_map.spritesheet.scale[0]);
                 for material_id in row {
-                        commands.spawn(SpriteSheetBundle {
-                                transform: Transform {
+                        commands.spawn((
+                                Transform {
                                         scale: dungeon_map.spritesheet.scale,
                                         translation: Vec3 {
                                                 x: start_x,
@@ -25,13 +25,14 @@ pub fn setup(
                                         },
                                         ..default()
                                 },
-                                texture: dungeon_map.spritesheet.image_handle.clone(),
-                                atlas: TextureAtlas {
-                                        index: material_id as usize,
-                                        layout: dungeon_map.spritesheet.atlas_handle.clone(),
-                                },
-                                ..default()
-                        });
+                                Sprite::from_atlas_image(
+                                        dungeon_map.spritesheet.image_handle.clone(), 
+                                        TextureAtlas {
+                                                index: material_id as usize,
+                                                layout: dungeon_map.spritesheet.atlas_handle.clone(),
+                                        }
+                                )
+                        ));
                         start_x += dungeon_map.spritesheet.grid_size * dungeon_map.spritesheet.scale[0];
                 }
                 start_y -= dungeon_map.spritesheet.grid_size * dungeon_map.spritesheet.scale[1];

@@ -1,6 +1,7 @@
 use bevy::{
         prelude::*,
-        sprite::{MaterialMesh2dBundle, Mesh2dHandle},
+        render::mesh::Mesh2d,
+        sprite::Sprite
 };
 
 use crate::resources::config::config::Config;
@@ -21,70 +22,64 @@ pub fn setup(
         commands.spawn((
                 Name::new("bottom_wall"),
                 Collideable::new(WALL_WIDTH, WALL_HEIGHT, 0., 16.),
-                MaterialMesh2dBundle {
-                        mesh: Mesh2dHandle(meshes.add(Rectangle::new(WALL_WIDTH, WALL_HEIGHT))),
-                        material: materials.add(Color::rgba(180., 0.95, 0.57, 0.)),
-                        transform: Transform::from_xyz(
-                                0.0, 
-                                -445. + 64., 
-                                0.0),
-                        ..default()
-                },
+                Mesh2d(meshes.add(Rectangle::new(WALL_WIDTH, WALL_HEIGHT))),
+                MeshMaterial2d(materials.add(Color::srgba(180., 0.95, 0.57, 0.))),
+                Transform::from_xyz(
+                        0.0, 
+                        -445. + 64., 
+                        0.0),
         ));
 
         commands.spawn((
                 Name::new("top_wall"),
                 Collideable::new(WALL_WIDTH, WALL_HEIGHT, 0., 0.),
-                MaterialMesh2dBundle {
-                        mesh: Mesh2dHandle(meshes.add(Rectangle::new(WALL_WIDTH, WALL_HEIGHT))),
-                        material: materials.add(Color::rgba(180., 0.95, 0.57, 0.)),
-                        transform: Transform::from_xyz(
-                                0.0,
-                                (config.window_height / 2.) - (WALL_HEIGHT / 2.) - config.in_game_ui_height - 32.,
-                                0.0,
-                        ),
-                        ..default()
-                },
+                Mesh2d(meshes.add(Rectangle::new(WALL_WIDTH, WALL_HEIGHT))),
+                MeshMaterial2d(materials.add(Color::srgba(180., 0.95, 0.57, 0.))),
+                Transform::from_xyz(
+                        0.0,
+                        (config.window_height / 2.) - (WALL_HEIGHT / 2.) - config.in_game_ui_height - 32.,
+                        0.0,
+                )
         ));
 
         commands.spawn((
                 Name::new("paddle_top_wall"),
                 Collideable::new(50., WALL_HEIGHT, 0., 0.),
-                SpriteSheetBundle {
-                        transform: Transform {
-                                scale: dungeon_map.spritesheet.scale,
-                                translation: Vec3 {
-                                        x: 750.,
-                                        y: (config.window_height / 2.) - (WALL_HEIGHT / 2.) - config.in_game_ui_height - 32. - 100.,
-                                        z: 1.,
-                                },
-                                ..default()
-                        },
-                        texture: dungeon_map.spritesheet.image_handle.clone(),
-                        atlas: TextureAtlas {
+                Sprite::from_atlas_image(
+                        dungeon_map.spritesheet.image_handle.clone(), 
+                        TextureAtlas {
                                 index: 90 as usize,
                                 layout: dungeon_map.spritesheet.atlas_handle.clone(),
+                        }
+                ),
+
+                Transform {
+                        scale: dungeon_map.spritesheet.scale,
+                        translation: Vec3 {
+                                x: 750.,
+                                y: (config.window_height / 2.) - (WALL_HEIGHT / 2.) - config.in_game_ui_height - 32. - 100.,
+                                z: 1.,
                         },
                         ..default()
-                }
+                },
         ));
         commands.spawn((
                 Name::new("paddle_bottom_wall"),
                 Collideable::new(50., WALL_HEIGHT, 0., 32.),
-                SpriteSheetBundle {
-                        transform: Transform {
-                                scale: dungeon_map.spritesheet.scale,
-                                translation: Vec3 {
-                                        x: 750.,
-                                        y: -350. + 64.,
-                                        z: 1.,
-                                },
-                                ..default()
-                        },
-                        texture: dungeon_map.spritesheet.image_handle.clone(),
-                        atlas: TextureAtlas {
+
+                Sprite::from_atlas_image(
+                        dungeon_map.spritesheet.image_handle.clone(), 
+                        TextureAtlas {
                                 index: 90 as usize,
                                 layout: dungeon_map.spritesheet.atlas_handle.clone(),
+                        }
+                ),
+                Transform {
+                        scale: dungeon_map.spritesheet.scale,
+                        translation: Vec3 {
+                                x: 750.,
+                                y: -350. + 64.,
+                                z: 1.,
                         },
                         ..default()
                 }

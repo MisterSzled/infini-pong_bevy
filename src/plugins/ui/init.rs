@@ -1,43 +1,42 @@
-use bevy::prelude::*;
+use bevy::{prelude::*, text::FontSmoothing};
 
-const NORMAL_BUTTON: Color = Color::rgb(0., 0., 0.);
+const NORMAL_BUTTON: Color = Color::srgb(0., 0., 0.);
 
 pub fn setup(
         mut commands: Commands, 
         asset_server: Res<AssetServer>,
 ) {
         commands.spawn(
-                NodeBundle {
-                style: Style {
+                Node {
                         width: Val::Percent(100.),
                         height: Val::Percent(7.5),
                         align_items: AlignItems::Center,
                         justify_content: JustifyContent::Center,
                         ..default()
                 },
-                ..default()
-        })
+        )
         .with_children(|parent| {
-                parent.spawn(ButtonBundle {
-                        style: Style {
-                                width: Val::Px(250.0),
-                                height: Val::Percent(100.),
-                                justify_content: JustifyContent::Center,
-                                align_items: AlignItems::Center,
-                                ..default()
+                parent.spawn((
+                        Button,
+                        Node {
+                            width: Val::Px(250.0),
+                            height: Val::Percent(100.0),
+                            justify_content: JustifyContent::Center,
+                            align_items: AlignItems::Center,
+                            ..default()
                         },
-                        border_color: BorderColor(Color::BLACK),
-                        background_color: NORMAL_BUTTON.into(),
-                        ..default()
-                })
+                        BorderColor(Color::BLACK),
+                        BackgroundColor(NORMAL_BUTTON.into()),
+                ))
                 .with_children(|parent| {
-                        parent.spawn(TextBundle::from_section(
-                                "Score: 0 - 0",
-                                TextStyle {
+                        parent.spawn((
+                                Text::new("Score: 0 - 0"),
+                                TextFont {
                                         font: asset_server.load("fonts/Retro Gaming.ttf"),
                                         font_size: 25.0,
-                                        color: Color::rgb(0.4, 0.9, 0.9),
+                                        font_smoothing: FontSmoothing::AntiAliased
                                 },
+                                TextColor(Color::srgb(0.4, 0.9, 0.9))
                         ));
                 });
         });

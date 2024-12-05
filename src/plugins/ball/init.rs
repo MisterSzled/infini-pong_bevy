@@ -18,22 +18,21 @@ pub fn setup(
                 Velocity::new(),
                 Collideable::new(BALL_DIAMETER, BALL_DIAMETER, 0., 0.),
 
-                SpriteSheetBundle {
-                        transform: Transform {
-                                scale: dungeon_map.spritesheet.scale,
-                                translation: Vec3 {
-                                        x: 0.,
-                                        y: 0.,
-                                        z: 2.,
-                                },
-                                ..default()
-                        },
-                        texture: dungeon_map.spritesheet.image_handle.clone(),
-                        atlas: TextureAtlas {
-                                index: 86 as usize,
-                                layout: dungeon_map.spritesheet.atlas_handle.clone(),
+                Transform {
+                        scale: dungeon_map.spritesheet.scale,
+                        translation: Vec3 {
+                                x: 0.,
+                                y: 0.,
+                                z: 2.,
                         },
                         ..default()
                 },
+                Sprite::from_atlas_image(
+                        dungeon_map.spritesheet.image_handle.clone(), 
+                        TextureAtlas {
+                                index: 86 as usize,
+                                layout: dungeon_map.spritesheet.atlas_handle.clone(),
+                        }
+                )
         ));
 }

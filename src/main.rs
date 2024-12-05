@@ -46,16 +46,3 @@ fn main() {
 
                 .run();
 }
-
-//TODO
-
-// Make walls invsible - hardcode collisions
-// Texture the ball/paddles
-// Move in the paddle blockers and texture them
-// Sound?
-
-// Things i did:
-//      Hardcoded collision into the map
-//              There should be a generic system to read the tiled data
-//              With the rules about certain tiles and then implement them
-//              Should provide z info too
